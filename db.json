@@ -1,0 +1,64 @@
+{
+    "catalogues" : [
+        {
+            "id" : 1,
+            "catalogDetail": "Grey Milange' T-Shirt with Round Chest print and cursive writing on it",
+            "quantity": 1,
+            "itemsPerCatalog": 6,
+            "pricePerPeice": 300,
+            "pricePerCatalogue": 1800,
+            "total": 0,
+            "stitching": 10
+        },
+        {
+            "id" : 2,
+            "catalogDetail": "Purple Milange' T-Shirt with Round Chest print and cursive writing on it",
+            "quantity": 1,
+            "itemsPerCatalog": 7,
+            "pricePerPeice": 300,
+            "pricePerCatalogue": 2100,
+            "total": 0,
+            "stitching": 10
+        },
+        {
+            "id" : 3,
+            "catalogDetail": "Pink Milange' T-Shirt with Round Chest print and cursive writing on it",
+            "quantity": 1,
+            "itemsPerCatalog": 8,
+            "pricePerPeice": 300,
+            "pricePerCatalogue": 2400,
+            "total": 0,
+            "stitching": 10
+        }
+        
+    ],
+    "items" : [
+        {
+            "id": 1,
+            "itemDetail": "Details of item 1",
+            "quantity": 1,
+            "null": "",
+            "price": 160,
+            "stitching": 50,
+            "total": 0
+        },
+        {
+            "id": 2,
+            "itemDetail": "Details of item 2",
+            "quantity": 1,
+            "null": "",
+            "price": 200,
+            "stitching": 50,
+            "total": 0
+        },
+        {
+            "id": 3,
+            "itemDetail": "Details of item 3",
+            "quantity": 1,
+            "null": "",
+            "price": 300,
+            "stitching": 50,
+            "total": 0
+        }
+    ]
+}
