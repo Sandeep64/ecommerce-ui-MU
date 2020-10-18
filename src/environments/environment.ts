@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   BASE_URL: 'http://localhost:3000/',
   SERVER_BASE_URL:
-    'http://103.209.147.187:8080/',
+    'http://ec2-54-174-99-153.compute-1.amazonaws.com:8080/',
+    
 };
 
 /*
