@@ -10,12 +10,15 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { ProductsListComponent } from './components/products-list/products-list.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShoppingCartComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [
     {provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: {disabled: true}}

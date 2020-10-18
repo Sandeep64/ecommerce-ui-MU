@@ -1,0 +1,229 @@
+<div class="products-list-page">
+  <div class="row">
+    <div class="side-filters">
+      <div class="brand-logo">
+        <a class="menu-icon">
+          <i class="material-icons">menu</i>
+        </a>
+        <span>Brand Name</span>
+      </div>
+      <div class="mat-accordion-box">
+        <br>
+        <button mat-raised-button color="accent" (click)="clearAllCheckboxes()">Clear All Filters</button>
+        <br>
+        <br>
+        <mat-accordion multi>
+          <!-- <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Product Type
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="filter-names" *ngFor="let type of productTypes">
+              <mat-checkbox
+                class="filter-checkbox"
+                [checked]="false"
+                (change)="onChange($event, 'Product Type', type)"
+              >
+                {{ type }}
+              </mat-checkbox>
+            </p>
+          </mat-expansion-panel> -->
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Fabric Type
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="filter-names" *ngFor="let type of fabricTypes">
+              <mat-checkbox
+                class="filter-checkbox"
+                [checked]="type.value"
+                (change)="onChange($event, 'Fabric Type', type.name)"
+              >
+                {{ type.name }}
+              </mat-checkbox>
+            </p>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Style
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="filter-names" *ngFor="let style of productStyles">
+              <mat-checkbox
+                class="filter-checkbox"
+                [checked]="style.value"
+                (change)="onChange($event, 'Style', style.name)"
+              >
+                {{ style.name }}
+              </mat-checkbox>
+            </p>
+          </mat-expansion-panel>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Work
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="filter-names" *ngFor="let work of workTypes">
+              <mat-checkbox
+                class="filter-checkbox"
+                [checked]="work.value"
+                (change)="onChange($event, 'Work', work.name)"
+              >
+                {{ work.name }}
+              </mat-checkbox>
+            </p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Stitching Type
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p class="filter-names" *ngFor="let type of stitchingTypes">
+              <mat-checkbox
+                class="filter-checkbox"
+                [checked]="type.value"
+                (change)="onChange($event, 'Stitching Type', type.name)"
+              >
+                {{ type.name }}
+              </mat-checkbox>
+            </p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- <div class="main-content-parent p-0"> -->
+    <div class="main-content">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+           Products List
+          </ng-template>
+          <div class="tops-content tab-content">
+            <div class="heading-sort-filter">
+              <h2 class="tab-title">New Products</h2>
+              <form>
+                <mat-form-field appearance="fill">
+                  <mat-label>Sort By</mat-label>
+                  <mat-select
+                    [(ngModel)]="selectedSortingValueOfNewProducts"
+                    name="sortingOfProducts"
+                  >
+                    <mat-option
+                      *ngFor="let item of sortValues"
+                      [value]="item.value"
+                      (click)="sortBy(item.value, 'New Products')"
+                    >
+                      {{ item.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </form>
+            </div>
+            <h1 class="loading-indicator" *ngIf="isLoading">Loading...</h1>
+            <div class="products" *ngIf="!isLoading">
+              <div class="row">
+                <div
+                  *ngFor="let product of listOfNewProducts | paginate: pagination.config"
+                  class="col-xs-12 col-sm-6 col-md-6 col-lg-3 p-half"
+                >
+                  <mat-card class="product-card">
+                    <img
+                      mat-card-image
+                      src="assets/images/products/2.png"
+                      alt="Photo"
+                    />
+                    <mat-card-content>
+                      <div class="card-content">
+                        <p>
+                          <b>{{ product.productName }}</b>
+                        </p>
+                        <p>{{ product.productDescription }}</p>
+                        <p style="color: rgb(236, 34, 220);">
+                          Long Name:
+                          <b>{{ product.productLongName }}</b>
+                        </p>
+
+                        <p style="color: rgb(211, 163, 4);">
+                          Style: <b>{{ product.specifications.productStyle }}</b>
+                        </p>
+                        <p style="color: rgb(36, 243, 226);">
+                          Work: <b>{{  product.specifications.workType }}</b>
+                        </p>
+                        <p style="color: rgb(142, 27, 236);">
+                          Stitching Type: <b>{{ product.specifications.stitchingType }}</b>
+                        </p>
+                        <p>Quantity:  {{ product.quantity }}</p>
+                        <p>Purchase Price: Rs. {{ product.purchasePrice }}</p>
+                      </div>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </div>
+              <div class="has-text-centered">
+                <pagination-controls
+                  [id]="pagination.config.id"
+                  [maxSize]="pagination.maxSize"
+                  [directionLinks]="pagination.directionLinks"
+                  [autoHide]="pagination.autoHide"
+                  [responsive]="pagination.responsive"
+                  [previousLabel]="pagination.labels.previousLabel"
+                  [nextLabel]="pagination.labels.nextLabel"
+                  [screenReaderPaginationLabel]="
+                  pagination.labels.screenReaderPaginationLabel
+                  "
+                  [screenReaderPageLabel]="pagination.labels.screenReaderPageLabel"
+                  [screenReaderCurrentLabel]="pagination.labels.screenReaderCurrentLabel"
+                  (pageChange)="onPageChange($event)"
+                  (pageBoundsCorrection)="onPageBoundsCorrection($event)"
+                ></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Dresses
+          </ng-template>
+          <div class="dresses-content tab-content">
+            
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Bottom
+          </ng-template>
+          <div class="bottom-content tab-content">
+            
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Intimates
+          </ng-template>
+          <div class="intimates-content tab-content">
+            
+          </div>
+        </mat-tab>
+
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Ethnic
+          </ng-template>
+          <div class="ethnic-content tab-content">
+            
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
